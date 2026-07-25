@@ -164,6 +164,15 @@ class Emma:
                         print("No weekly data available yet.")
                     print("=" * 50 + "\n")
                 
+                elif user_input.lower() == 'register face':
+                    self.handle_face_registration()
+                
+                elif user_input.lower() == 'recognize':
+                    self.handle_face_recognition()
+                
+                elif user_input.lower() == 'faces':
+                    self.show_registered_faces()
+                
                 else:
                     response = self.respond_conversationally(user_input)
                     memory.record_conversation(user_input, response.replace("Emma: ", "").replace("\n", ""))
@@ -222,7 +231,7 @@ class Emma:
         print("Task Management:")
         print("  add task <title> | <category> | [deadline]  - Add a new task")
         print("  list tasks                                  - Show all tasks")
-        print("  complete <task_id>                         - Mark task as done")
+        print("  complete <id>                              - Mark task as done")
         print("\nDaily Activities:")
         print("  check                                       - Daily check-in")
         print("  status                                      - Show progress")
@@ -232,6 +241,10 @@ class Emma:
         print("  stats                                       - View statistics")
         print("  achievements                                - View achievements")
         print("  motivation                                  - Get motivated!")
+        print("\nFace Recognition:")
+        print("  register face                              - Register your face")
+        print("  recognize                                  - Recognize face")
+        print("  faces                                       - Show registered faces")
         print("\nOther:")
         print("  help                                        - Show this help")
         print("  quit                                        - Exit Emma")
@@ -277,3 +290,42 @@ class Emma:
         
         print(f"Emma: {response}\n")
         return response
+
+    def handle_face_registration(self):
+        """Handle face registration"""
+        try:
+            from brain.facial_recognition import FacialRecognition
+            facial_system = FacialRecognition()
+            facial_system.register_face(self.creator)
+        except ImportError:
+            print("Emma: Face recognition not available. Install with:\n")
+            print("pip install opencv-python face-recognition pillow numpy\n")
+        except Exception as e:
+            print(f"Emma: Error during registration: {str(e)}\n")
+
+    def handle_face_recognition(self):
+        """Handle face recognition"""
+        try:
+            from brain.facial_recognition import FacialRecognition
+            facial_system = FacialRecognition()
+            recognized = facial_system.recognize_faces()
+            if recognized:
+                print(f"\nEmma: Welcome, {recognized}! 🎉\n")
+            else:
+                print("Emma: Could not recognize face. Try registering first!\n")
+        except ImportError:
+            print("Emma: Face recognition not available. Install with:\n")
+            print("pip install opencv-python face-recognition pillow numpy\n")
+        except Exception as e:
+            print(f"Emma: Error during recognition: {str(e)}\n")
+
+    def show_registered_faces(self):
+        """Show registered faces"""
+        try:
+            from brain.facial_recognition import FacialRecognition
+            facial_system = FacialRecognition()
+            facial_system.show_face_stats()
+        except ImportError:
+            print("Emma: Face recognition not available.\n")
+        except Exception as e:
+            print(f"Emma: Error: {str(e)}\n")

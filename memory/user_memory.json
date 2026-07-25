@@ -1,0 +1,27 @@
+{
+  "preferences": {
+    "favorite_study_time": null,
+    "gym_frequency": null,
+    "preferred_notification_time": null,
+    "favorite_motivational_quotes": []
+  },
+  "habits": {
+    "typical_study_hours": 0,
+    "gym_sessions_per_week": 0,
+    "meal_times": [],
+    "message_response_time": null
+  },
+  "achievements": [],
+  "streaks": {
+    "Studies": {
+      "count": 1,
+      "last_updated": "2026-07-25T08:07:32.338720"
+    },
+    "Gym": {
+      "count": 1,
+      "last_updated": "2026-07-25T08:07:32.359724"
+    }
+  },
+  "last_interaction": "2026-07-25T08:07:32.272614",
+  "total_interactions": 4
+}

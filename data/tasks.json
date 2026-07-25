@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Complete Math Assignment",
+    "category": "Studies",
+    "deadline": "2026-07-28",
+    "priority": "medium",
+    "completed": true,
+    "created_at": "2026-07-25T08:03:25.307108",
+    "completed_at": "2026-07-25T08:05:54.304796"
+  },
+  {
+    "id": 2,
+    "title": "Gym Session",
+    "category": "Gym",
+    "deadline": "2026-07-25",
+    "priority": "medium",
+    "completed": true,
+    "created_at": "2026-07-25T08:03:25.312270",
+    "completed_at": "2026-07-25T08:05:54.315388"
+  },
+  {
+    "id": 3,
+    "title": "Lunch Break",
+    "category": "Food",
+    "deadline": null,
+    "priority": "medium",
+    "completed": false,
+    "created_at": "2026-07-25T08:03:25.315896",
+    "completed_at": null
+  },
+  {
+    "id": 4,
+    "title": "Study for Physics exam",
+    "category": "Studies",
+    "deadline": "2026-07-26",
+    "priority": "medium",
+    "completed": false,
+    "created_at": "2026-07-25T08:05:27.951125",
+    "completed_at": null
+  },
+  {
+    "id": 5,
+    "title": "Complete Assignment",
+    "category": "Studies",
+    "deadline": null,
+    "priority": "medium",
+    "completed": false,
+    "created_at": "2026-07-25T08:05:27.962055",
+    "completed_at": null
+  },
+  {
+    "id": 6,
+    "title": "Gym - Cardio",
+    "category": "Gym",
+    "deadline": null,
+    "priority": "medium",
+    "completed": false,
+    "created_at": "2026-07-25T08:05:27.969357",
+    "completed_at": null
+  },
+  {
+    "id": 7,
+    "title": "Learn Python",
+    "category": "Studies",
+    "deadline": "2026-07-27",
+    "priority": "medium",
+    "completed": false,
+    "created_at": "2026-07-25T08:06:51.197701",
+    "completed_at": null
+  },
+  {
+    "id": 8,
+    "title": "Push-ups 30min",
+    "category": "Gym",
+    "deadline": null,
+    "priority": "medium",
+    "completed": false,
+    "created_at": "2026-07-25T08:06:51.202716",
+    "completed_at": null
+  },
+  {
+    "id": 9,
+    "title": "Dinner Prep",
+    "category": "Food",
+    "deadline": null,
+    "priority": "medium",
+    "completed": false,
+    "created_at": "2026-07-25T08:06:51.208814",
+    "completed_at": null
+  },
+  {
+    "id": 10,
+    "title": "College Project",
+    "category": "Studies",
+    "deadline": "2026-07-27",
+    "priority": "medium",
+    "completed": true,
+    "created_at": "2026-07-25T08:07:32.275715",
+    "completed_at": "2026-07-25T08:07:32.330022"
+  },
+  {
+    "id": 11,
+    "title": "Gym Session",
+    "category": "Gym",
+    "deadline": "2026-07-25",
+    "priority": "medium",
+    "completed": true,
+    "created_at": "2026-07-25T08:07:32.304439",
+    "completed_at": "2026-07-25T08:07:32.345782"
+  },
+  {
+    "id": 12,
+    "title": "Meal Planning",
+    "category": "Food",
+    "deadline": null,
+    "priority": "medium",
+    "completed": false,
+    "created_at": "2026-07-25T08:07:32.320880",
+    "completed_at": null
+  }
+]

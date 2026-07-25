@@ -1,0 +1,16 @@
+{
+  "creator": "Parzival",
+  "reminders": {
+    "morning": "07:00",
+    "noon": "12:00",
+    "evening": "18:00"
+  },
+  "personality": "helpful, caring, motivating",
+  "categories": [
+    "Studies",
+    "Messages",
+    "Gym",
+    "Food",
+    "Other"
+  ]
+}

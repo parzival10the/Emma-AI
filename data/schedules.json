@@ -1,0 +1,10 @@
+{
+  "daily_reminders": true,
+  "reminder_times": {
+    "morning": "07:00",
+    "noon": "12:00",
+    "evening": "18:00"
+  },
+  "check_on_startup": true,
+  "notifications_enabled": true
+}

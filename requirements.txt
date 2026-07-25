@@ -1,0 +1,16 @@
+# Emma AI - Requirements
+# Python 3.8+
+
+# No external dependencies required for core functionality!
+# Emma uses only Python standard library:
+# - json (for data storage)
+# - datetime (for scheduling)
+# - pathlib (for file handling)
+# - threading (for scheduler daemon)
+# - os (for file operations)
+
+# Optional for future features:
+# pyttsx3==2.90          # Text-to-speech
+# SpeechRecognition==3.10.0  # Speech-to-text
+# requests==2.31.0       # For API integrations
+# flask==3.0.0          # For web interface (future)

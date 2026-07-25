@@ -1,25 +1,36 @@
+import sys
+import io
 from datetime import datetime
+from brain.emma import Emma
+from skills.task_manager import TaskManager
+from skills.scheduler import Scheduler
+from memory.memory import Memory
+from logs.logger import Logger
 
+# Fix Unicode encoding on Windows
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
-class Emma:
-    def __init__(self):
-        self.name = "Emma"
-        self.version = "0.1"
-        self.creator = "Parzival"
-
-    def boot(self):
-        print("=" * 45)
-        print(f"{self.name} AI")
-        print(f"Version: {self.version}")
-        print("=" * 45)
-        print("STATUS : ONLINE")
-        print(f"TIME   : {datetime.now().strftime('%H:%M:%S')}")
-        print()
-        print(f"Hello, {self.creator}.")
-        print("I'm ready to assist you.")
-        print("=" * 45)
+def main():
+    emma = Emma(name="Emma", creator="Parzival", version="2.0")
+    emma.boot()
+    
+    # Initialize all components
+    task_manager = TaskManager()
+    scheduler = Scheduler()
+    memory = Memory()
+    logger = Logger()
+    
+    # Log startup
+    logger.log_activity("startup", "Emma started successfully")
+    
+    # Log interaction
+    memory.log_interaction()
+    
+    # Start interactive mode with all components
+    emma.start_interactive_mode(task_manager, scheduler, memory, logger)
 
 
 if __name__ == "__main__":
-    emma = Emma()
-    emma.boot()
+    main()

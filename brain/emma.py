@@ -173,6 +173,23 @@ class Emma:
                 elif user_input.lower() == 'faces':
                     self.show_registered_faces()
                 
+                elif user_input.lower() == 'check emails':
+                    self.check_emails(task_manager)
+                
+                elif user_input.lower().startswith('search emails'):
+                    keyword = user_input.replace('search emails', '', 1).strip()
+                    self.search_emails(keyword)
+                
+                elif user_input.lower() == 'email summary':
+                    self.show_email_summary()
+                
+                elif user_input.lower() == 'email stats':
+                    self.show_email_stats()
+                
+                elif user_input.lower().startswith('emails from'):
+                    sender = user_input.replace('emails from', '', 1).strip()
+                    self.show_emails_from(sender)
+                
                 else:
                     response = self.respond_conversationally(user_input)
                     memory.record_conversation(user_input, response.replace("Emma: ", "").replace("\n", ""))
@@ -237,6 +254,12 @@ class Emma:
         print("  status                                      - Show progress")
         print("  summary                                     - Today's summary")
         print("  weekly                                      - Weekly report")
+        print("\nEmail Management:")
+        print("  check emails                                - Check unread emails")
+        print("  email summary                               - Email summary")
+        print("  search emails <keyword>                     - Search emails")
+        print("  emails from <sender>                        - Emails from sender")
+        print("  email stats                                 - Email statistics")
         print("\nAnalytics & Learning:")
         print("  stats                                       - View statistics")
         print("  achievements                                - View achievements")
@@ -327,5 +350,135 @@ class Emma:
             facial_system.show_face_stats()
         except ImportError:
             print("Emma: Face recognition not available.\n")
+        except Exception as e:
+            print(f"Emma: Error: {str(e)}\n")
+
+    def check_emails(self, task_manager):
+        """Check and display email summary"""
+        try:
+            from skills.email_manager import EmailManager
+            email_manager = EmailManager()
+            
+            counts = email_manager.get_all_unread_count()
+            
+            print("\n" + "=" * 50)
+            print("📧 Email Check")
+            print("=" * 50)
+            print(f"\nTotal unread emails: {counts['total']}")
+            
+            if counts['gmail'] > 0:
+                print(f"  Gmail: {counts['gmail']} unread")
+            if counts['outlook'] > 0:
+                print(f"  Outlook: {counts['outlook']} unread")
+            
+            if counts['total'] > 0:
+                print("\n🔝 Important Emails:")
+                important = email_manager.get_important_emails(limit=5)
+                for i, email in enumerate(important, 1):
+                    print(f"\n{i}. {email.get('subject', 'No Subject')}")
+                    print(f"   From: {email.get('from', 'Unknown')}")
+                    print(f"   Preview: {email.get('snippet', '')[:60]}...")
+            
+            print("\n" + "=" * 50 + "\n")
+            
+        except ImportError:
+            print("Emma: Email integration not available. Run:\n")
+            print("pip install google-auth-oauthlib google-auth-httplib2 google-api-python-client O365\n")
+        except Exception as e:
+            print(f"Emma: Error checking emails: {str(e)}\n")
+
+    def show_email_summary(self):
+        """Show email summary"""
+        try:
+            from skills.email_manager import EmailManager
+            email_manager = EmailManager()
+            summary = email_manager.get_email_summary()
+            print(f"\nEmma: {summary}\n")
+        except ImportError:
+            print("Emma: Email integration not available.\n")
+        except Exception as e:
+            print(f"Emma: Error: {str(e)}\n")
+
+    def search_emails(self, keyword):
+        """Search emails by keyword"""
+        if not keyword:
+            print("Emma: Please provide a search keyword.\n")
+            return
+        
+        try:
+            from skills.email_manager import EmailManager
+            email_manager = EmailManager()
+            results = email_manager.search_emails(keyword, limit=10)
+            
+            print("\n" + "=" * 50)
+            print(f"📧 Search Results for '{keyword}'")
+            print("=" * 50)
+            
+            if not results:
+                print("No emails found.\n")
+            else:
+                for i, email in enumerate(results, 1):
+                    print(f"\n{i}. {email.get('subject', 'No Subject')}")
+                    print(f"   From: {email.get('from', 'Unknown')}")
+                    print(f"   Source: {email.get('source', 'Unknown').upper()}")
+                    print(f"   Preview: {email.get('snippet', '')[:60]}...")
+            
+            print("\n" + "=" * 50 + "\n")
+            
+        except ImportError:
+            print("Emma: Email integration not available.\n")
+        except Exception as e:
+            print(f"Emma: Error searching emails: {str(e)}\n")
+
+    def show_emails_from(self, sender):
+        """Show emails from specific sender"""
+        if not sender:
+            print("Emma: Please provide a sender name.\n")
+            return
+        
+        try:
+            from skills.email_manager import EmailManager
+            email_manager = EmailManager()
+            emails = email_manager.get_emails_by_sender(sender, limit=10)
+            
+            print("\n" + "=" * 50)
+            print(f"📧 Emails from '{sender}'")
+            print("=" * 50)
+            
+            if not emails:
+                print("No emails found from this sender.\n")
+            else:
+                for i, email in enumerate(emails, 1):
+                    print(f"\n{i}. {email.get('subject', 'No Subject')}")
+                    print(f"   Date: {email.get('date', 'Unknown')}")
+                    print(f"   Preview: {email.get('snippet', '')[:60]}...")
+            
+            print("\n" + "=" * 50 + "\n")
+            
+        except ImportError:
+            print("Emma: Email integration not available.\n")
+        except Exception as e:
+            print(f"Emma: Error: {str(e)}\n")
+
+    def show_email_stats(self):
+        """Show email statistics"""
+        try:
+            from skills.email_manager import EmailManager
+            email_manager = EmailManager()
+            stats = email_manager.get_stats()
+            
+            print("\n" + "=" * 50)
+            print("📊 Email Statistics")
+            print("=" * 50)
+            print(f"Total emails checked: {stats['total_emails_checked']}")
+            print(f"Tasks created from emails: {stats['total_tasks_created']}")
+            print(f"Last check: {stats['last_check'] or 'Never'}")
+            print(f"\nEmail sources:")
+            print(f"  Gmail: {stats['sources'].get('gmail', 0)}")
+            print(f"  Outlook: {stats['sources'].get('outlook', 0)}")
+            print("=" * 50 + "\n")
+            
+        except ImportError:
+            print("Emma: Email integration not available.\n")
         except Exception as e:
             print(f"Emma: Error: {str(e)}\n")

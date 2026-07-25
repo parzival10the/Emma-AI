@@ -49,6 +49,15 @@ Emma is an intelligent AI assistant designed to help you manage your daily tasks
 - Real-time data sync
 - Cross-device synchronization
 
+### 📧 **NEW!** Email Integration
+- Check Gmail and Outlook emails
+- See unread email counts
+- Get important emails highlighted
+- Search emails by keyword
+- Filter emails by sender
+- View email statistics
+- API endpoints for mobile access
+
 ## 🚀 Quick Start
 
 ### Option 1: Desktop Only
@@ -104,6 +113,11 @@ react-native run-android  # or run-ios
 | `check` | Daily check-in |
 | `status` | View progress |
 | `stats` | View statistics |
+| `check emails` | Check unread emails |
+| `email summary` | Get email summary |
+| `search emails <keyword>` | Search emails |
+| `emails from <sender>` | Get emails from sender |
+| `email stats` | View email statistics |
 | `register face` | Register your face |
 | `recognize` | Recognize your face |
 | `faces` | Show registered faces |
@@ -219,6 +233,20 @@ See `MOBILE_APP_SETUP.md` for detailed React Native setup.
 ### Facial Recognition
 
 See `FACIAL_RECOGNITION_SETUP.md` for detailed setup.
+
+### Email Integration
+
+See `EMAIL_INTEGRATION_SETUP.md` for detailed setup.
+
+**Quick Setup:**
+```bash
+# Install email libraries
+pip install -r requirements.txt
+
+# Run Emma and check emails
+python main.py
+check emails
+```
 
 ## 💾 Data Storage
 

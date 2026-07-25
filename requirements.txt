@@ -19,6 +19,12 @@ flask==3.0.0                    # Web framework
 flask-cors==4.0.0               # CORS support
 requests==2.31.0                # HTTP client
 
+# Optional - Email Integration:
+google-auth-oauthlib==1.1.0     # Gmail OAuth
+google-auth-httplib2==0.2.0     # Gmail HTTP authentication
+google-api-python-client==2.100.0  # Gmail API
+O365==4.10.3                    # Outlook integration
+
 # Optional - Future features:
 # pyttsx3==2.90                  # Text-to-speech
 # SpeechRecognition==3.10.0      # Speech-to-text

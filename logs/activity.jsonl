@@ -20,3 +20,5 @@
 {"timestamp": "2026-07-25T08:07:32.342025", "type": "task_completed", "description": "Completed task: College Project", "metadata": {"task_id": 10, "category": "Studies", "title": "College Project"}}
 {"timestamp": "2026-07-25T08:07:32.362719", "type": "task_completed", "description": "Completed task: Gym Session", "metadata": {"task_id": 11, "category": "Gym", "title": "Gym Session"}}
 {"timestamp": "2026-07-25T08:07:32.377129", "type": "shutdown", "description": "Emma closed by user", "metadata": {}}
+{"timestamp": "2026-07-25T08:42:46.229714", "type": "startup", "description": "Emma started successfully", "metadata": {}}
+{"timestamp": "2026-07-25T08:48:50.543751", "type": "shutdown", "description": "Emma closed by user", "metadata": {}}

@@ -299,6 +299,129 @@ def get_user_info():
     })
 
 
+# ==================== EMAIL ENDPOINTS ====================
+
+@app.route('/api/emails/unread', methods=['GET'])
+def get_unread_emails():
+    """Get unread email count from all sources"""
+    try:
+        from skills.email_manager import EmailManager
+        email_manager = EmailManager()
+        counts = email_manager.get_all_unread_count()
+        return jsonify({
+            "total": counts['total'],
+            "gmail": counts.get('gmail', 0),
+            "outlook": counts.get('outlook', 0),
+            "timestamp": datetime.now().isoformat()
+        })
+    except ImportError:
+        return jsonify({"error": "Email integration not available"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/emails/summary', methods=['GET'])
+def get_email_summary():
+    """Get email summary"""
+    try:
+        from skills.email_manager import EmailManager
+        email_manager = EmailManager()
+        summary = email_manager.get_email_summary()
+        return jsonify({
+            "summary": summary,
+            "timestamp": datetime.now().isoformat()
+        })
+    except ImportError:
+        return jsonify({"error": "Email integration not available"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/emails/important', methods=['GET'])
+def get_important_emails():
+    """Get important emails"""
+    try:
+        from skills.email_manager import EmailManager
+        email_manager = EmailManager()
+        limit = request.args.get('limit', default=5, type=int)
+        emails = email_manager.get_important_emails(limit=limit)
+        
+        return jsonify({
+            "emails": emails,
+            "count": len(emails),
+            "timestamp": datetime.now().isoformat()
+        })
+    except ImportError:
+        return jsonify({"error": "Email integration not available"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/emails/search', methods=['GET'])
+def search_emails():
+    """Search emails by keyword"""
+    try:
+        from skills.email_manager import EmailManager
+        keyword = request.args.get('q', default='', type=str)
+        
+        if not keyword:
+            return jsonify({"error": "Search keyword required"}), 400
+        
+        email_manager = EmailManager()
+        limit = request.args.get('limit', default=10, type=int)
+        emails = email_manager.search_emails(keyword, limit=limit)
+        
+        return jsonify({
+            "emails": emails,
+            "count": len(emails),
+            "keyword": keyword,
+            "timestamp": datetime.now().isoformat()
+        })
+    except ImportError:
+        return jsonify({"error": "Email integration not available"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/emails/from/<sender>', methods=['GET'])
+def get_emails_from_sender(sender):
+    """Get emails from specific sender"""
+    try:
+        from skills.email_manager import EmailManager
+        email_manager = EmailManager()
+        limit = request.args.get('limit', default=10, type=int)
+        emails = email_manager.get_emails_by_sender(sender, limit=limit)
+        
+        return jsonify({
+            "emails": emails,
+            "count": len(emails),
+            "sender": sender,
+            "timestamp": datetime.now().isoformat()
+        })
+    except ImportError:
+        return jsonify({"error": "Email integration not available"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/api/emails/stats', methods=['GET'])
+def get_email_stats():
+    """Get email statistics"""
+    try:
+        from skills.email_manager import EmailManager
+        email_manager = EmailManager()
+        stats = email_manager.get_stats()
+        
+        return jsonify({
+            "stats": stats,
+            "timestamp": datetime.now().isoformat()
+        })
+    except ImportError:
+        return jsonify({"error": "Email integration not available"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 # ==================== ERROR HANDLERS ====================
 
 @app.errorhandler(404)

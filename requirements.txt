@@ -1,5 +1,5 @@
 # Emma AI - Requirements
-# Python 3.8+
+# Use Python 3.11 for these pinned dependencies.
 
 # Core requirements (no dependencies)
 # - json (for data storage)
@@ -10,7 +10,7 @@
 
 # Optional - Facial Recognition:
 opencv-python==4.8.0.74         # Face detection
-face-recognition==1.3.5         # Face encoding/recognition
+face-recognition==1.3.0         # Face encoding/recognition
 pillow==10.0.0                  # Image processing
 numpy==1.24.3                   # Numerical operations
 
@@ -23,9 +23,8 @@ requests==2.31.0                # HTTP client
 google-auth-oauthlib==1.1.0     # Gmail OAuth
 google-auth-httplib2==0.2.0     # Gmail HTTP authentication
 google-api-python-client==2.100.0  # Gmail API
-O365==4.10.3                    # Outlook integration
+O365==2.0.31                    # Outlook integration
 
 # Optional - Future features:
 # pyttsx3==2.90                  # Text-to-speech
 # SpeechRecognition==3.10.0      # Speech-to-text
-

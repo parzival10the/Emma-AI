@@ -60,6 +60,12 @@ Emma is an intelligent AI assistant designed to help you manage your daily tasks
 
 ## 🚀 Quick Start
 
+Use Python 3.11 when installing the pinned dependencies in `requirements.txt`.
+Netlify builds select this version through `PYTHON_VERSION` in `netlify.toml`.
+Facial recognition also requires CMake and a C++ compiler to build its `dlib`
+dependency. This build configuration does not host the Python API server on
+Netlify; the server requires a separate Python-capable runtime.
+
 ### Option 1: Desktop Only
 
 ```bash

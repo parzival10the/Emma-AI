@@ -201,7 +201,7 @@ pip install -r requirements.txt --force-reinstall
 ```bash
 # Reinstall with specific version
 pip uninstall face-recognition
-pip install face-recognition==1.3.5
+pip install face-recognition==1.3.0
 
 # Check webcam access
 # Windows: Check privacy settings
